@@ -43,7 +43,7 @@
 					<input class="form-control" type="text" name="type" placeholder="Donation Type"><br>
 					<input class="form-control" type="text" name="qty" placeholder="Quantity"><br>
 					<input class="form-control" type="date" name="date"><br>
-					<input class="form-control" type="text" name="description" placeholder="Description"><br>
+					<textarea class="form-control" name="description" placeholder="Description"></textarea><br>
 					<button class="btn btn-primary" type="submit" name="submit">Create</submit><br>
 				</form>
 
