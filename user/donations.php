@@ -1,36 +1,49 @@
 <?php
-	//require "../header.php";
+	
+	require "user_header.php";
 	//require_once("../dbhandler.php");
 	$msg = "";
 	
 	
-	
-	if(isset($_POST['submit'])){
-		$con = new mysqli('localhost', 'root', '', 'db_idonify');
+	if(isset($_SESSION['email']))
+	{
+		//$con = new mysqli('localhost', 'root', '', 'db_idonify');
+		//get user data from database using email
+		// let user access logged in only pages
+		//header('location: user.php');
+		//$getId = "SELECT user_id FROM users";
+		//$result = $con->query($getId);
 		
-		$donationType = $con->real_escape_string($_POST['type']);
-		$donationQty = $con->real_escape_string($_POST['qty']);
-		$donationDate 	= $con->real_escape_string($_POST['date']);
-		$donationDescription = $con->real_escape_string($_POST['description']);
+		//$donorId= $result;
+		
+		$donorId = "";
+		
+		if(isset($_POST['submit'])){
+			$con = new mysqli('localhost', 'root', '', 'db_idonify');
 			
-		$con->query("INSERT INTO donations (donation_type, donation_qty, donation_date, donation_description) 
-					VALUES ('$donationType', '$donationQty', '$donationDate','$donationDescription')");
-		$msg = "Your donation was added successfully!";
+			$donationType = $con->real_escape_string($_POST['type']);
+			$donationQty = $con->real_escape_string($_POST['qty']);
+			$donationDate 	= $con->real_escape_string($_POST['date']);
+			$donationDescription = $con->real_escape_string($_POST['description']);
+				
+			$con->query("INSERT INTO donations (donation_type, donation_qty, donation_date, donation_description) 
+						VALUES ('$donationType', '$donationQty', '$donationDate','$donationDescription')");
+			$msg = "Your donation was added successfully!";
+		}
+		else
+		{
+			
+		}
 	}
+	else
+	{
+		//Redirect to login pages
+		header("Location: ../login.php");
+	}
+	
 ?>
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-</head>
-<body>
-	<div class="container" style="margin-top: 100px;">
+<div class="container" style="margin-top: 100px;">
 		<div class="row justify-content-center">
 			<div class="col-md-6 col-md-offset-3" align="center">
 				<!--<img src="images/logo.png"><br><br>-->
@@ -49,9 +62,7 @@
 
 			</div>
 		</div>
-	</div>
-</body>
-</html>
+</div>
 	
 <?php
 	//require "../footer.php";
