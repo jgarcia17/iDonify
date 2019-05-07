@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 04, 2019 at 09:19 PM
+-- Generation Time: May 07, 2019 at 03:36 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -34,7 +34,8 @@ CREATE TABLE IF NOT EXISTS `donations` (
   `donation_type` varchar(50) NOT NULL,
   `donation_qty` int(10) NOT NULL,
   `donation_date` date NOT NULL,
-  `donor_id` int(11) NOT NULL,
+  `donation_description` longtext NOT NULL,
+  `donor_email` varchar(100) NOT NULL,
   PRIMARY KEY (`donation_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -53,7 +54,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_password` varchar(100) NOT NULL,
   `user_role` varchar(20) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_fname`, `user_lname`, `user_email`, `user_password`, `user_role`) VALUES
+(1, 'Joe', 'Brown', 'brown@email.com', '$2y$10$ZwQ.Y1Tvf5QsIevLVv4/2OYLTAWQ1l5o1NKSZ1ZyTkJHqzisOZY5W', 'user'),
+(2, 'user1', 'last1', 'user1@email.com', '$2y$10$QPBjvhHJrN8qImNts6TOK.ShyREL2J5ouCfSMY0tvBn.JUwkErzzW', 'user');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
