@@ -1,4 +1,7 @@
 <?php
+	require "header.php";
+	session_start();
+	
 	$msg = "";
 
 	if (isset($_POST['submit'])) {
@@ -6,6 +9,7 @@
 
 		$email = $con->real_escape_string($_POST['email']);
 		$pwd = $con->real_escape_string($_POST['pwd']);
+		$userId = "";
 
 		$sql = $con->query("SELECT user_id, user_password FROM users WHERE user_email='$email'");
 		if ($sql->num_rows > 0) {
@@ -13,11 +17,18 @@
 		    if (password_verify($pwd, $data['user_password'])) {
 		        $msg = "You have been logged IN!";
 				$_SESSION['email'] = $email;
+				
 				header('location: user/user.php');
-            } else
+            } 
+			else
+			{
 			    $msg = "Please check your inputs!";
-        } else
+			}
+        } 
+		else
+		{
             $msg = "Please check your inputs!";
+		}
 	}
 ?>
 <!doctype html>
@@ -28,7 +39,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Log In</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" 
+		integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 	<div class="container" style="margin-top: 100px;">
@@ -38,12 +51,16 @@
 
 				<?php if ($msg != "") echo $msg . "<br><br>"; ?>
 				
+				<h1>Login</h1><br>
 				<form method="post" action="login.php">
 					<input class="form-control" type="email" name="email" placeholder="Email"><br>
 					<input class="form-control" minlength="5" type="password" name="pwd" placeholder="Password"><br>
-					<button class="btn btn-primary" type="submit" name="submit">Log In</submit><br>
+					<button class="btn btn-primary" type="submit" name="submit">Log In</button><br><br>
 				</form>
-
+				
+				<ul class="nobullet">
+					<li><a href="register.php">To register click here</a></li>
+				</ul>
 			</div>
 		</div>
 	</div>
