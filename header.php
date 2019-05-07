@@ -20,7 +20,7 @@
 					<nav class="navbar navbar-dark bg-dark">	
 						<ul>
 							<a class="navbar-brand" href="index.php">
-								<img src="images/logo.png" alt="logo">
+								<img src="assets/images/logo.png" alt="logo">
 							</a>
 							<li><a href="index.php">Home</a></li>
 							<li><a href="about.php">About</a></li>
