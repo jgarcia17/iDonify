@@ -1,3 +1,18 @@
+.navbar li{
+	list-style-type: none;
+	display: inline-block;
+}
+
+.navbar a{
+	font-size: 40px;
+}
+
+
+.nobullet{
+	list-style-type: none;
+}
+
+/*
 header{
 	background-color: green;
 }
@@ -28,3 +43,4 @@ nav li{
 	list-style: none;
 	float: left;
 }
+*/
