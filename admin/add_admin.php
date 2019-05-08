@@ -1,5 +1,10 @@
 <?php
 	session_start();
+	include('functions.php');
+	if (!isAdmin()) {
+		$_SESSION['msg'] = "You must log in first";
+		header('location: ../login.php');
+	}
 	require "../header.php";
 	//require_once("../dbhandler.php");
 	$msg = "";

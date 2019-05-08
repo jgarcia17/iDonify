@@ -1,7 +1,12 @@
 <?php
+	session_start();
 	require "../header.php";
 	
-	session_start();
+	include('functions.php');
+	if (!isAdmin()) {
+		$_SESSION['msg'] = "You must log in first";
+		header('location: ../login.php');
+	}
 	
 	if(isset($_SESSION['email']))
 	{
