@@ -7,32 +7,21 @@
 	
 	if(isset($_SESSION['email']))
 	{
-		//$con = new mysqli('localhost', 'root', '', 'db_idonify');
-		//get user data from database using email
-		// let user access logged in only pages
-		//header('location: user.php');
-		//$getId = "SELECT user_id FROM users";
-		//$result = $con->query($getId);
-		
-		//$donorId= $result;
-		
-		$donorId = "";
+		require_once("../dbhandler.php");
 		
 		if(isset($_POST['submit'])){
-			$con = new mysqli('localhost', 'root', '', 'db_idonify');
 			
-			$donationType = $con->real_escape_string($_POST['type']);
-			$donationQty = $con->real_escape_string($_POST['qty']);
-			$donationDate 	= $con->real_escape_string($_POST['date']);
-			$donationDescription = $con->real_escape_string($_POST['description']);
+			$email = $_SESSION['email'];
+			$donationType = $conn->real_escape_string($_POST['type']);
+			$donationQty = $conn->real_escape_string($_POST['qty']);
+			$donationDate = $conn->real_escape_string($_POST['date']);
+			$donationDescription = $conn->real_escape_string($_POST['description']);
+			$date = date("Y-m-d H:i:s", strtotime($donationDate)); //converting html input date to mysql datetime format
+			
 				
-			$con->query("INSERT INTO donations (donation_type, donation_qty, donation_date, donation_description) 
-						VALUES ('$donationType', '$donationQty', '$donationDate','$donationDescription')");
+			$conn->query("INSERT INTO donations (donation_type, donation_qty, donation_date, donation_description, donor_email) 
+						VALUES ('$donationType', '$donationQty', '$date','$donationDescription', '$email')");
 			$msg = "Your donation was added successfully!";
-		}
-		else
-		{
-			
 		}
 	}
 	else
@@ -51,7 +40,6 @@
 				<?php if ($msg != "") echo $msg . "<br><br>"; ?>
 				
 				<h1>Donations</h1>
-
 				<form method="post" action="donations.php">
 					<input class="form-control" type="text" name="type" placeholder="Donation Type"><br>
 					<input class="form-control" type="text" name="qty" placeholder="Quantity"><br>

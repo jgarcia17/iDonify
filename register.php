@@ -3,18 +3,18 @@
 	$msg = "";
 
 	if (isset($_POST['submit'])) {
-		$con = new mysqli('localhost', 'root', '', 'db_idonify');
+		require_once("dbhandler.php");
 
 		//$name = $con->real_escape_string($_POST['name']);
 		//$email = $con->real_escape_string($_POST['email']);
 		//$password = $con->real_escape_string($_POST['password']);
 		//$cPassword = $con->real_escape_string($_POST['cPassword']);
 		
-		$fname = $con->real_escape_string($_POST['fname']);
-		$lname = $con->real_escape_string($_POST['lname']);
-		$email = $con->real_escape_string($_POST['email']);
-		$pwd1 = $con->real_escape_string($_POST['pwd1']);
-		$pwd2 = $con->real_escape_string($_POST['pwd2']);
+		$fname = $conn->real_escape_string($_POST['fname']);
+		$lname = $conn->real_escape_string($_POST['lname']);
+		$email = $conn->real_escape_string($_POST['email']);
+		$pwd1 = $conn->real_escape_string($_POST['pwd1']);
+		$pwd2 = $conn->real_escape_string($_POST['pwd2']);
 		$userRole = "user";
 		
 		if ($pwd1 != $pwd2)
@@ -24,7 +24,7 @@
 		else 
 		{
 			$hash = password_hash($pwd1, PASSWORD_BCRYPT);
-			$con->query("INSERT INTO users (user_fname, user_lname,user_email, user_password, user_role) 
+			$conn->query("INSERT INTO users (user_fname, user_lname,user_email, user_password, user_role) 
 						VALUES ('$fname', '$lname', '$email', '$hash', '$userRole')");
 			$msg = "You have been registered!";
 		}

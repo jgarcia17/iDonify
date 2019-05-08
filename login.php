@@ -5,13 +5,13 @@
 	$msg = "";
 
 	if (isset($_POST['submit'])) {
-		$con = new mysqli('localhost', 'root', '', 'db_idonify');
+		require_once("dbhandler.php");
 
-		$email = $con->real_escape_string($_POST['email']);
-		$pwd = $con->real_escape_string($_POST['pwd']);
+		$email = $conn->real_escape_string($_POST['email']);
+		$pwd = $conn->real_escape_string($_POST['pwd']);
 		$userId = "";
 
-		$sql = $con->query("SELECT user_id, user_password FROM users WHERE user_email='$email'");
+		$sql = $conn->query("SELECT user_id, user_password FROM users WHERE user_email='$email'");
 		if ($sql->num_rows > 0) {
 		    $data = $sql->fetch_array();
 		    if (password_verify($pwd, $data['user_password'])) {
