@@ -1,38 +1,7 @@
 <?php
 	
 	require "user_header.php";
-	//require_once("../dbhandler.php");
 	$msg = "";
-	
-	
-	if(isset($_SESSION['email']))
-	{
-		require_once("../dbhandler.php");
-		
-		$email = $_SESSION['email'];
-		$sql = "SELECT * FROM donations WHERE $email = 'donor_email';";
-		$result = mysqli_query($conn, $sql);
-		$resultCheck = mysqli_num_rows($result);
-		
-		if($resultCheck > 0)
-		{
-			while($row = mysqli_fetch_assoc($result)){
-				echo "<tr><td>" . $row["donation_type"] . "</td><td>" . $row["donation_qty"] . "</td><td>" 
-				. $row["donation_date"] . "</td><td>" . $row["donation_description"] ."</td></tr>";
-			}
-			echo "</table>";
-		}
-		else
-		{
-			echo "0 Donations made";
-		}
-		
-	}
-	else
-	{
-		//Redirect to login pages
-		header("Location: ../login.php");
-	}
 	
 ?>
 
@@ -44,13 +13,45 @@
 				<?php if ($msg != "") echo $msg . "<br><br>"; ?>
 				
 				
-				<table align="center" border="1px" >
-					<tr>
-						<th>Donation Type</th>
-						<th>Quantity</th>
-						<th>Date</th>
-						<th>Description</th>
-					</tr>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Donation Type</th>
+							<th scope="col">Quantity</th>
+							<th scope="col">Date</th>
+							<th scope="col">Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+							if(isset($_SESSION['email']))
+							{
+								require_once("../dbhandler.php");
+								
+								
+								$email = $_SESSION['email'];
+								$sql = "SELECT * FROM donations WHERE donor_email = '$email';";
+								$result = $conn->query($sql);
+							
+								while($row = $result->fetch_assoc()){
+										echo "<tr>";
+										echo "<td>" . $row["donation_type"] . "</td>";
+										echo "<td>" . $row["donation_qty"] . "</td>"; 
+										echo "<td>" . $row["donation_date"] . "</td>"; 
+										echo "<td>" . $row["donation_description"] . "</td>";
+										
+								}
+								
+
+								
+							}
+							else
+							{
+								//Redirect to login pages
+								header("Location: ../login.php");
+							}
+						?>
+					</tbody>
 				</table>
 				
 
