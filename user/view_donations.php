@@ -28,22 +28,24 @@
 							{
 								require_once("../dbhandler.php");
 								
-								
 								$email = $_SESSION['email'];
 								$sql = "SELECT * FROM donations WHERE donor_email = '$email';";
-								$result = $conn->query($sql);
-							
-								while($row = $result->fetch_assoc()){
+								$result = mysqli_query($conn, $sql);
+								$resultCheck = mysqli_num_rows($result);
+								
+								if($resultCheck > 0){
+									while ($row = mysqli_fetch_assoc($result)){
 										echo "<tr>";
 										echo "<td>" . $row["donation_type"] . "</td>";
 										echo "<td>" . $row["donation_qty"] . "</td>"; 
 										echo "<td>" . $row["donation_date"] . "</td>"; 
 										echo "<td>" . $row["donation_description"] . "</td>";
-										
+									}
 								}
-								
-
-								
+								else
+								{
+									echo "You haven't made any donations";
+								}
 							}
 							else
 							{
