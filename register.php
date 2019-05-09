@@ -33,6 +33,18 @@
 		{
 			$msg = "Confirmation password is required";
 		}
+		elseif(!preg_match("/^[a-zA-Z ]*$/", $fname))
+		{
+			$msg = "Only letters allowed for First name";
+		}
+		elseif(!preg_match("/^[a-zA-Z ]*$/", $lname))
+		{
+			$msg = "Only letters allowed for Last name";
+		}
+		elseif(!filter_var($email, FILTER_VALIDATE_EMAIL))
+		{
+			$msg = "Invalid email format";
+		}
 		elseif ($pwd1 != $pwd2)
 		{
 			$msg = "Please Check Your Passwords!";
