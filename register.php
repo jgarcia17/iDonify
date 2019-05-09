@@ -1,14 +1,10 @@
 <?php
 	require "header.php";
 	$msg = "";
-
-	if (isset($_POST['submit'])) {
-		require_once("dbhandler.php");
-
-		//$name = $con->real_escape_string($_POST['name']);
-		//$email = $con->real_escape_string($_POST['email']);
-		//$password = $con->real_escape_string($_POST['password']);
-		//$cPassword = $con->real_escape_string($_POST['cPassword']);
+	
+	if (isset($_POST['submit'])) 
+	{
+		require_once('dbhandler.php');
 		
 		$fname = $conn->real_escape_string($_POST['fname']);
 		$lname = $conn->real_escape_string($_POST['lname']);
@@ -17,16 +13,36 @@
 		$pwd2 = $conn->real_escape_string($_POST['pwd2']);
 		$userRole = "user";
 		
-		if ($pwd1 != $pwd2)
+		if($fname=="")
+		{
+			$msg = "First name is required";
+		}
+		elseif($lname=="")
+		{
+			$msg = "Last name is required";
+		}
+		elseif($email=="")
+		{
+			$msg = "Email is required";
+		}
+		elseif($pwd1=="")
+		{
+			$msg = "Password is required";
+		}
+		elseif($pwd2=="")
+		{
+			$msg = "Confirmation password is required";
+		}
+		elseif ($pwd1 != $pwd2)
 		{
 			$msg = "Please Check Your Passwords!";
 		}
 		else 
 		{
-			$hash = password_hash($pwd1, PASSWORD_BCRYPT);
-			$conn->query("INSERT INTO users (user_fname, user_lname,user_email, user_password, user_role) 
-						VALUES ('$fname', '$lname', '$email', '$hash', '$userRole')");
-			$msg = "You have been registered!";
+				$hash = password_hash($pwd1, PASSWORD_BCRYPT);
+				$conn->query("INSERT INTO users (user_fname, user_lname,user_email, user_password, user_role) 
+							VALUES ('$fname', '$lname', '$email', '$hash', '$userRole')");
+				$msg = "You have been registered!";
 		}
 	}
 ?>
