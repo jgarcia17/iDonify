@@ -25,6 +25,7 @@
 							<li><a href="about.php">About</a></li>
 							<li><a href="contact.php">Contact</a></li>
 							<li><a href="donations.php">Donations</a></li>
+							<li><a href="view_donations.php">View Donations</a></li>
 						</ul>
 						<li><a href="../logout.php">Logout</a></li>
 					</nav>
