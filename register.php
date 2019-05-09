@@ -42,7 +42,8 @@
 				$hash = password_hash($pwd1, PASSWORD_BCRYPT);
 				$conn->query("INSERT INTO users (user_fname, user_lname,user_email, user_password, user_role) 
 							VALUES ('$fname', '$lname', '$email', '$hash', '$userRole')");
-				$msg = "You have been registered!";
+							
+				$msg = "You have been registered!";			
 		}
 	}
 ?>
