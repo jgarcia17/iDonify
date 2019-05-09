@@ -50,12 +50,22 @@
 			$msg = "Please Check Your Passwords!";
 		}
 		else 
-		{
-				$hash = password_hash($pwd1, PASSWORD_BCRYPT);
-				$conn->query("INSERT INTO users (user_fname, user_lname,user_email, user_password, user_role) 
-							VALUES ('$fname', '$lname', '$email', '$hash', '$userRole')");
-							
-				$msg = "You have been registered!";			
+		{			
+					$sqle = "SELECT * FROM users WHERE user_email='$email'";
+					$result = mysqli_query($conn, $sqle);
+					
+					if(mysqli_num_rows($result) > 0)
+					{
+						$msg = "Email is already taken";
+					}
+					else
+					{	
+						$hash = password_hash($pwd1, PASSWORD_BCRYPT);
+						$conn->query("INSERT INTO users (user_fname, user_lname,user_email, user_password, user_role) 
+									VALUES ('$fname', '$lname', '$email', '$hash', '$userRole')");
+									
+						$msg = "You have been registered!";
+					}
 		}
 	}
 ?>
