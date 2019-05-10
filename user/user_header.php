@@ -11,6 +11,8 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
 			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" href="../assets/css/style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 		
 	</head>
 	<body>
@@ -25,7 +27,7 @@
 							<li><a href="about.php">About</a></li>
 							<li><a href="contact.php">Contact</a></li>
 							<li><a href="donations.php">Donations</a></li>
-							<li><a href="view_donations.php">View Donations</a></li>
+							
 						</ul>
 						<li><a href="../logout.php">Logout</a></li>
 					</nav>
