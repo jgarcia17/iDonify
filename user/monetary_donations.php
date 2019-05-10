@@ -18,7 +18,7 @@
 			$date = date("Y-m-d H:i:s", strtotime($donationDate)); //converting html input date to mysql datetime format
 			
 				
-			$conn->query("INSERT INTO donations (donation_amount, donation_date, donation_description, donor_email) 
+			$conn->query("INSERT INTO monetary_donations (donation_amount, donation_date, donation_description, donor_email) 
 						VALUES ('$donationAmount', '$date','$donationDescription', '$email')");
 			$msg = "Your donation was added successfully!";
 		}
