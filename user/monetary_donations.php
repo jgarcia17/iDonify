@@ -12,16 +12,14 @@
 		if(isset($_POST['submit'])){
 			
 			$email = $_SESSION['email'];
-			$deviceType = $conn->real_escape_string($_POST['type']);
-			$deviceSerial = $conn->real_escape_string($_POST['serial']);
-			$deviceQty = $conn->real_escape_string($_POST['qty']);
+			$donationAmount = $conn->real_escape_string($_POST['amount']);
 			$donationDate = $conn->real_escape_string($_POST['date']);
 			$donationDescription = $conn->real_escape_string($_POST['description']);
 			$date = date("Y-m-d H:i:s", strtotime($donationDate)); //converting html input date to mysql datetime format
 			
 				
-			$conn->query("INSERT INTO device_donations (device_type, device_serial, device_qty, donation_date, donation_description, donor_email) 
-						VALUES ('$deviceType', '$deviceSerial', '$deviceQty', '$date','$donationDescription', '$email')");
+			$conn->query("INSERT INTO monetary_donations (donation_amount, donation_date, donation_description, donor_email) 
+						VALUES ('$donationAmount', '$date','$donationDescription', '$email')");
 			$msg = "Your donation was added successfully!";
 		}
 	}
@@ -44,11 +42,9 @@
 
 				<?php if ($msg != "") echo $msg . "<br><br>"; ?>
 				
-				<h1>Device donations</h1><br>
-				<form method="post" action="donations.php">
-					<input class="form-control" type="text" name="type" placeholder="Device Type"><br>
-					<input class="form-control" type="text" name="serial" placeholder="Device Serial"><br>
-					<input class="form-control" type="text" name="qty" placeholder="Quantity"><br>
+				<h1>Monetary donations</h1>
+				<form method="post" action="monetary_donations.php">
+					<input class="form-control" type="text" name="amount" placeholder="Amount"><br>
 					<input class="form-control" type="date" name="date"><br>
 					<textarea class="form-control" name="description" placeholder="Description"></textarea><br>
 					<button class="btn btn-primary" type="submit" name="submit">Create</submit><br>
@@ -57,8 +53,6 @@
 			</div>
 		</div>
 </div>
-
-
 	
 <?php
 	//require "../footer.php";
