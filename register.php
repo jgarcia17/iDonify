@@ -11,7 +11,7 @@
 		$email = $conn->real_escape_string($_POST['email']);
 		$pwd1 = $conn->real_escape_string($_POST['pwd1']);
 		$pwd2 = $conn->real_escape_string($_POST['pwd2']);
-		$userRole = "user";
+		$userType = "user";
 		
 		if($fname=="")
 		{
@@ -61,8 +61,8 @@
 					else
 					{	
 						$hash = password_hash($pwd1, PASSWORD_BCRYPT);
-						$conn->query("INSERT INTO users (user_fname, user_lname,user_email, user_password, user_role) 
-									VALUES ('$fname', '$lname', '$email', '$hash', '$userRole')");
+						$conn->query("INSERT INTO users (user_fname, user_lname,user_email, user_password, user_type) 
+									VALUES ('$fname', '$lname', '$email', '$hash', '$userType')");
 									
 						$msg = "You have been registered!";
 					}
