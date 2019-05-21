@@ -1,6 +1,8 @@
 <?php
 	require "header.php";
 	$msg = "";
+	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\Exception;
 	
 	if (isset($_POST['submit'])) 
 	{
@@ -13,23 +15,23 @@
 		$pwd2 = $conn->real_escape_string($_POST['pwd2']);
 		$userType = "user";
 		
-		if($fname=="")
+		if($fname == "")
 		{
 			$msg = "First name is required";
 		}
-		elseif($lname=="")
+		elseif($lname == "")
 		{
 			$msg = "Last name is required";
 		}
-		elseif($email=="")
+		elseif($email == "")
 		{
 			$msg = "Email is required";
 		}
-		elseif($pwd1=="")
+		elseif($pwd1 == "")
 		{
 			$msg = "Password is required";
 		}
-		elseif($pwd2=="")
+		elseif($pwd2 == "")
 		{
 			$msg = "Confirmation password is required";
 		}
@@ -60,11 +62,36 @@
 					}
 					else
 					{	
+						$token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789/$!()*';
+						$token = str_shuffle($token);
+						$token = substr($token, 0, 10);
+						
 						$hash = password_hash($pwd1, PASSWORD_BCRYPT);
-						$conn->query("INSERT INTO users (user_fname, user_lname,user_email, user_password, user_type) 
-									VALUES ('$fname', '$lname', '$email', '$hash', '$userType')");
-									
-						$msg = "You have been registered!";
+						$conn->query("INSERT INTO users (user_fname, user_lname,user_email, user_password, user_type, email_confirmed, token) 
+									VALUES ('$fname', '$lname', '$email', '$hash', '$userType', '0', '$token')");
+						
+						include_once "PHPMailer/PHPMailer.php";
+						include_once "PHPMailer/Exception.php";
+						
+						$mail = new PHPMailer();
+						$mail->setFrom('info@idonify.org');
+						$mail->addAddress($email, $fname);
+						$mail->Subject = "Please verify your email!";
+						$mail->isHTML(true);
+						$mail->Body = "
+							Please click the link below to verify your email:<br><br>
+							
+							<a href='emailconfirmation/confirm.php?email=$email&token=$token'>Click here</a>
+						";
+						
+						if($mail->send())
+						{
+							$msg = "You have been registered. Verify your email.";
+						}
+						else
+						{
+							$msg = "Please try again";
+						}
 					}
 		}
 	}

@@ -4,30 +4,53 @@
 	
 	$msg = "";
 
-	if (isset($_POST['submit'])) {
+	if (isset($_POST['submit'])) 
+	{
 		require_once("dbhandler.php");
 
 		$email = $conn->real_escape_string($_POST['email']);
 		$pwd = $conn->real_escape_string($_POST['pwd']);
 		$userId = "";
-
-		$sql = $conn->query("SELECT user_id, user_password FROM users WHERE user_email='$email'");
-		if ($sql->num_rows > 0) {
-		    $data = $sql->fetch_array();
-		    if (password_verify($pwd, $data['user_password'])) {
-		        $msg = "You have been logged IN!";
-				$_SESSION['email'] = $email;
-				
-				header('location: user/user.php');
-            } 
-			else
-			{
-			    $msg = "Please check your inputs!";
-			}
-        } 
-		else
+		
+		if($email == "")
 		{
-            $msg = "Please check your inputs!";
+			$msg = "Email is required";
+		}
+		elseif($pwd == "")
+		{
+			$msg = "Password is required";
+		}
+		elseif(!filter_var($email, FILTER_VALIDATE_EMAIL))
+		{
+			$msg = "Invalid email format";
+		}
+		else 
+		{
+			$sql = $conn->query("SELECT user_id, user_password, email_confirmed FROM users WHERE user_email='$email'");
+			if ($sql->num_rows > 0) 
+			{
+				$data = $sql->fetch_array();
+				if (password_verify($pwd, $data['user_password'])) 
+				{
+					if ($data['email_confirmed'] == 0)
+					{
+	                    $msg = "Please verify your email!";
+						
+					}
+                    else 
+					{
+	                    $msg = "You have been logged IN!";
+						$_SESSION['email'] = $email;
+						
+						header('location: user/user.php');
+                    }
+					
+				} 
+				else
+				{
+					$msg = "Please check your inputs!";
+				}
+			} 
 		}
 	}
 ?>
