@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 20, 2019 at 06:03 AM
+-- Generation Time: May 21, 2019 at 04:15 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -86,21 +86,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_email` varchar(100) NOT NULL,
   `user_password` varchar(100) NOT NULL,
   `user_type` varchar(20) NOT NULL,
+  `email_confirmed` tinyint(4) NOT NULL,
+  `token` varchar(10) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_fname`, `user_lname`, `user_email`, `user_password`, `user_type`) VALUES
-(1, 'Joe', 'Brown', 'brown@email.com', '$2y$10$ZwQ.Y1Tvf5QsIevLVv4/2OYLTAWQ1l5o1NKSZ1ZyTkJHqzisOZY5W', 'user'),
-(2, 'user1', 'last1', 'user1@email.com', '$2y$10$QPBjvhHJrN8qImNts6TOK.ShyREL2J5ouCfSMY0tvBn.JUwkErzzW', 'user'),
-(3, 'user2', 'last2', 'user2@email.com', '$2y$10$p02S1Uek9hjx.HALmfd.BOjB75C7m1ra4qgGZguqXeM.xVUGbV.Ha', 'user'),
-(4, 'user', 'last', 'user@email.com', '$2y$10$H/0FncUDsbL/ITp1/C/X3u7ed/4mgKnWQHCQrOU7p8s5CgVg.AOWm', 'user'),
-(5, 'admin', 'admin', 'admin@email.com', '$2y$10$6ELNoF4/H3SiEUT8PsPVKebVxs5lvqup6B/A.9tcKdOOTypLLoTiW', 'admin'),
-(17, 'other', 'user@email.com', 'otheruser@email.com', '$2y$10$W8CRSBiS4cGoW02erLeOKeR/BRO6fE10i9Q5XEGEnTu9f9RKbPtJ6', 'user'),
-(18, 'new', 'new', 'new@email.com', '$2y$10$sibuqWHCpnlbHd2QXExk4.9IIgMYZvhrJDvofKqSle0Z/Wmwd62Sa', 'user');
+INSERT INTO `users` (`user_id`, `user_fname`, `user_lname`, `user_email`, `user_password`, `user_type`, `email_confirmed`, `token`) VALUES
+(27, 'user', 'test', 'test@email.com', '$2y$10$b9tHw6naY48Y8XshY5zE.eUpH/BdEhIxW7zcgpoSkRfxFaZICha0W', 'user', 1, ''),
+(28, 'user', 'two', 'use@email.com', '$2y$10$rlPIWcS2KGYRFLzrA6kfw.TfCQ/EavZiiqS3xhe9je2k68.0ACamK', 'user', 0, '!5kShY/K)Z');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
