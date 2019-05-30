@@ -126,7 +126,7 @@
 				</form>
 				
 				<ul class="nobullet">
-					<li><a href="login.php">To log in click here</a></li>
+					<li><a href="login">To log in click here</a></li>
 				</ul>
 
 			</div>

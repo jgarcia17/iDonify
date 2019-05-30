@@ -82,7 +82,7 @@
 				</form>
 				
 				<ul class="nobullet">
-					<li><a href="register.php">To register click here</a></li>
+					<li><a href="register">To register click here</a></li>
 				</ul>
 			</div>
 		</div>
