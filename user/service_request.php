@@ -14,12 +14,13 @@
 			$email = $_SESSION['email'];
 			$deviceType = $conn->real_escape_string($_POST['type']);
 			$deviceSerial = $conn->real_escape_string($_POST['serial']);
-			$householdNumber = "";
-			$householdIncome = "";
+			$householdNumber = $conn->real_escape_string($_POST['number']);
+			$householdIncome = $conn->real_escape_string($_POST['income']);
 			$document = "";
 			$requestDate = $conn->real_escape_string($_POST['date']);
 			$requestDescription = $conn->real_escape_string($_POST['description']);
 			$requestType = "service";
+			
 			$requestStatus = "in progress";
 			$date = date("Y-m-d H:i:s", strtotime($requestDate)); //converting html input date to mysql datetime format
 			
@@ -54,6 +55,8 @@
 				<form method="post" action="service_request.php">
 					<input class="form-control" type="text" name="type" placeholder="Device Type"><br>
 					<input class="form-control" type="text" name="serial" placeholder="Device Serial"><br>
+					<input class="form-control" type="number" name="number" placeholder="Household Size" min="1" max="20"><br>
+					<input class="form-control" type="number" name="income" placeholder="Household Income" min="0.00"><br>
 					<input class="form-control" type="file" name="document"><br>
 					<input class="form-control" type="date" name="date"><br>
 					<textarea class="form-control" name="description" placeholder="Description"></textarea><br>
