@@ -16,7 +16,7 @@
 	else
 	{
 		//Redirect to login pages
-		header("Location: ../login.php");
+		header("Location: ../login");
 	}
 ?>
 	

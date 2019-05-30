@@ -19,14 +19,14 @@
 				<div>
 					<nav class="navbar navbar-dark bg-dark">	
 						<ul>
-							<a class="navbar-brand" href="index.php">
+							<a class="navbar-brand" href="index">
 								<img src="assets/images/logo.png" alt="logo">
 							</a>
-							<li><a href="index.php">Home</a></li>
-							<li><a href="about.php">About</a></li>
-							<li><a href="contact.php">Contact</a></li>
+							<li><a href="index">Home</a></li>
+							<li><a href="about">About</a></li>
+							<li><a href="contact">Contact</a></li>
 						</ul>
-						<li><a href="login.php">Login</a></li>
+						<li><a href="login">Login</a></li>
 					</nav>
 				</div>
 			</div>

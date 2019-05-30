@@ -20,17 +20,17 @@
 		<header>
 				<nav class="navbar navbar-dark bg-dark">	
 						<ul>
-							<a class="navbar-brand" href="index.php">
+							<a class="navbar-brand" href="user">
 								<img src="../assets/images/logo.png" alt="logo">
 							</a>
-							<li><a href="User.php">Home</a></li>
-							<li><a href="about.php">About</a></li>
-							<li><a href="contact.php">Contact</a></li>
-							<li><a href="donations.php">Donations</a></li>
-							<li><a href="device_request.php">Request</a></li>
+							<li><a href="user">Home</a></li>
+							<li><a href="about">About</a></li>
+							<li><a href="contact">Contact</a></li>
+							<li><a href="donations">Donations</a></li>
+							<li><a href="device_request">Request</a></li>
 							
 						</ul>
-						<li><a href="../logout.php">Logout</a></li>
+						<li><a href="../logout">Logout</a></li>
 					</nav>
 			</div>
 		</header>
