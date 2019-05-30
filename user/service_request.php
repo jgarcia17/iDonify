@@ -14,8 +14,8 @@
 			$email = $_SESSION['email'];
 			$deviceType = $conn->real_escape_string($_POST['type']);
 			$deviceSerial = $conn->real_escape_string($_POST['serial']);
-			$householdNumber = 0;
-			$householdIncome = 0;
+			$householdNumber = "";
+			$householdIncome = "";
 			$document = "";
 			$requestDate = $conn->real_escape_string($_POST['date']);
 			$requestDescription = $conn->real_escape_string($_POST['description']);
@@ -25,9 +25,9 @@
 			
 				
 			$conn->query("INSERT INTO requests (device_type, household_number, household_income, document, request_description, 
-							request_type, device_serial, request_date, requester_email) 
+							request_type, device_serial, request_date, request_status, requester_email) 
 						VALUES ('$deviceType', '$householdNumber','$householdIncome', '$document', '$requestDescription', 
-								'$requestType', '$deviceSerial', '$date', '$email')");
+								'$requestType', '$deviceSerial', '$date', '$requestStatus', '$email')");
 			$msg = "Your request was submitted successfully!";
 		}
 	}
