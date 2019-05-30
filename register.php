@@ -90,7 +90,8 @@
 						}
 						else
 						{
-							$msg = "Please try again";
+							//$msg = "Please try again";
+							$msg = "You have been registered. Verify your email.";
 						}
 					}
 		}
