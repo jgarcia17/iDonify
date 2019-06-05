@@ -2,22 +2,22 @@
 	require "header.php";
 	$msg = "";
 	
-	if(isset($_POST['submit']))
+	if(isset($_POST['send']))
 	{
 		require_once('dbhandler.php');
 		
-		$fname = $conn->real_escape_string($_POST['fname']);
-		$lname = $conn->real_escape_string($_POST['lname']);
+		$first = $conn->real_escape_string($_POST['fname']);
+		$last = $conn->real_escape_string($_POST['lname']);
 		$phone = $conn->real_escape_string($_POST['phone']);
 		$email = $conn->real_escape_string($_POST['email']);
 		$message = $conn->real_escape_string($_POST['message']);
 		$date = "";
 		
-		if($fname == "")
+		if($first == "")
 		{
 			$msg = "First name is required";
 		}
-		elseif($lname == "")
+		elseif($last == "")
 		{
 			$msg = "Last name is required";
 		}
@@ -33,11 +33,11 @@
 		{
 			$msg = "Message field is required";
 		}
-		elseif(!preg_match("/^[a-zA-Z ]*$/", $fname))
+		elseif(!preg_match("/^[a-zA-Z ]*$/", $first))
 		{
 			$msg = "Only letters allowed for First name";
 		}
-		elseif(!preg_match("/^[a-zA-Z ]*$/", $lname))
+		elseif(!preg_match("/^[a-zA-Z ]*$/", $last))
 		{
 			$msg = "Only letters allowed for Last name";
 		}
@@ -51,8 +51,8 @@
 		}
 		else
 		{
-			$conn->query("INSERT INTO contact (first_name, last_name, email, phone, message, date) 
-							VALUES ('$fname', '$lname', '$email', '$phone', '$message', '$date')");
+			$conn->query("INSERT INTO contact (first_name, last_name, email, phone, message) 
+				VALUES('$first', '$last', '$email', '$phone', '$message')");
 							
 			$msg = "Your message was sent successfully";
 		}
@@ -84,7 +84,7 @@
 					<input class="form-control" type="text" name="email" value="" placeholder="Email"><br>
 					<input class="form-control" type="tel" name="phone" value="" placeholder="Phone number"><br>
 					<textarea class="form-control" name="message" placeholder="Write your message here"></textarea><br>
-					<input class="btn btn-primary" name="submit" type="submit" value="Send"><br><br>
+					<input class="btn btn-primary" name="send" type="submit" value="Send"><br><br>
 				</form>
 
 			</div>
