@@ -17,11 +17,11 @@
 			$deviceQty = $conn->real_escape_string($_POST['qty']);
 			$donationDate = $conn->real_escape_string($_POST['date']);
 			$donationDescription = $conn->real_escape_string($_POST['description']);
-			$date = date("Y-m-d H:i:s", strtotime($donationDate)); //converting html input date to mysql datetime format
+			//$date = date("Y-m-d H:i:s", strtotime($donationDate)); //converting html input date to mysql datetime format
 			
 				
 			$conn->query("INSERT INTO device_donations (device_type, device_serial, device_qty, donation_date, donation_description, donor_email) 
-						VALUES ('$deviceType', '$deviceSerial', '$deviceQty', '$date','$donationDescription', '$email')");
+						VALUES ('$deviceType', '$deviceSerial', '$deviceQty', '$donationDate','$donationDescription', '$email')");
 			$msg = "Your donation was added successfully!";
 		}
 	}
