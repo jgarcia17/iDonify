@@ -15,19 +15,22 @@
 			$deviceType = $conn->real_escape_string($_POST['type']);
 			$householdNumber = $conn->real_escape_string($_POST['number']);
 			$householdIncome = $conn->real_escape_string($_POST['income']);
-			$document = "";
+			$document = addslashes($_FILES['document']['tmp_name']);
+			$documentName = addslashes($_FILES['document']['name']);
+			$document = file_get_contents($document);
+			$document = base64_encode($document);
 			$requestDate = $conn->real_escape_string($_POST['date']);
 			$requestDescription = $conn->real_escape_string($_POST['description']);
 			$requestType = "device";
 			$deviceSerial = "N/A";
 			$requestStatus = "in progress";
-			$date = date("Y-m-d H:i:s", strtotime($requestDate)); //converting html input date to mysql datetime format
+			//$date = date("Y-m-d H:i:s", strtotime($requestDate)); //converting html input date to mysql datetime format
 			
 				
-			$conn->query("INSERT INTO requests (device_type, household_number, household_income, document, request_description, 
+			$conn->query("INSERT INTO requests (device_type, household_number, household_income, document, document_name, request_description, 
 							request_type, device_serial, request_date, request_status, requester_email) 
-						VALUES ('$deviceType', '$householdNumber','$householdIncome', '$document', '$requestDescription', 
-								'$requestType', '$deviceSerial', '$date', '$requestStatus', '$email')");
+						VALUES ('$deviceType', '$householdNumber','$householdIncome', '$document', '$documentName', '$requestDescription', 
+								'$requestType', '$deviceSerial', '$requestDate', '$requestStatus', '$email')");
 			$msg = "Your request was submitted successfully!";
 		}
 	}
@@ -51,7 +54,7 @@
 				<?php if ($msg != "") echo $msg . "<br><br>"; ?>
 				
 				<h1>Device request</h1><br>
-				<form method="post" action="device_request.php">
+				<form method="post" action="device_request.php" enctype="multipart/form-data">
 					<input class="form-control" type="text" name="type" placeholder="Device Type"><br>
 					<input class="form-control" type="number" name="number" placeholder="Household Size" min="1" max="20"><br>
 					<input class="form-control" type="number" name="income" placeholder="Household Income" min="0.00"><br>
