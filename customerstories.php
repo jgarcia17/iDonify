@@ -16,6 +16,81 @@
 
 
 
+
+	<main>
+		<div class=""> <!-- class="wrapper-main"-->
+
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="/RepairShop/app/assets/stylesheets/application.css">
+
+<!--
+Commenting this out to remove header styling
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+-->
+
+
+<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+<div class="ct-pageWrapper" id="ct-js-wrapper">
+  <section class="company-heading intro-type" id="parallax-one">
+    <div class="container">
+      <div class="row product-title-info">
+        <div class="col-md-12">
+          <h1>Customer Stories</h1>
+        </div>
+      </div>
+    </div>
+    <div class="parallax" id="parallax-cta" style="background-image:url(https://www.solodev.com/assets/hero/hero.jpg);"></div>
+  </section>
+  <section class="story-section company-sections ct-u-paddingBoth100 paddingBothHalf noTopMobilePadding" id="section">
+    <div class="container text-center">
+      <h2>TESTIMONIALS</h2>
+      <h3>Lorem ipsum - dolor</h3>
+      <div class="col-md-8 col-md-offset-2">
+        <div class="red-border"></div>
+        <p class="ct-u-size22 ct-u-fontWeight300 marginTop40">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed libero vel ex maximus vulputate nec eu ligula. Vestibulum elementum nisi ut fermentum lobortis. Sed quis iaculis felis.</p>
+        <!-- <a class="ct-u-marginTop60 btn btn-solodev-red btn-fullWidth-sm ct-u-size19" href="#">Learn More</a> -->
+        <a class="ct-u-marginTop60 btn btn-solodev-red-reversed btn-fullWidth-sm ct-u-size19" href="/careers/">Submit your feedback now</a>
+        
+      </div>
+    </div>
+  </section>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+	</main>
+	
+
+
+
+
+
+
+
+
   
     <div class="container text-center">
       <h2>About Us</h2>

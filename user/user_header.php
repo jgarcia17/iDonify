@@ -1,6 +1,3 @@
-<?php
-	session_start();
-?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,13 +17,14 @@
 		<header>
 				<nav class="navbar navbar-dark bg-dark">	
 						<ul>
-							<a class="navbar-brand" href="index.php">
+							<a class="navbar-brand" href="user.php">
 								<img src="../assets/images/logo.png" alt="logo">
 							</a>
 							<li><a href="User.php">Home</a></li>
 							<li><a href="about.php">About</a></li>
 							<li><a href="contact.php">Contact</a></li>
 							<li><a href="donations.php">Donations</a></li>
+							<li><a href="../device_form">Request</a></li>
 							
 						</ul>
 						<li><a href="../logout.php">Logout</a></li>

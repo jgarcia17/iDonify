@@ -26,7 +26,18 @@
 							<li><a href="about.php">About</a></li>
 							<li><a href="contact.php">Contact</a></li>
 						</ul>
-						<li><a href="login.php">Login</a></li>
+						
+						<li><a href="login">Login</a></li>
+
+						<?php
+/*
+						if(isset($_SESSION['username'])) { ?>
+						<li><a href="index.php?logout='1'">Logout</a></li>
+						<?php }
+						
+						*/
+						
+						?>
 					</nav>
 				</div>
 			</div>
