@@ -11,7 +11,7 @@
 	</div>
 <?php	
 	include "dbhandler.php";
-    $id = $_GET['id'];
+    $id = $_GET['user_id'];
 
 if($_SERVER['REQUEST_METHOD']=='POST' && ISSET($_POST["submit"])){
 
@@ -57,7 +57,7 @@ if($insert){
 		</div>
 		<div class="input-group">
 			<label>Password</label>
-			<input type="password" name="password_1" value="<?php echo $row['user_password']; } ?>" min="8" required>
+			<input type="password" name="password_1" value="<?php echo $row['user_password']; ?>" min="8" required>
 		</div>
 		
 		<div class="input-group">
