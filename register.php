@@ -10,7 +10,7 @@
 		<h2>User Register</h2>
 	</div>
 	
-	<form method="post" action="user-registration.php">
+	<form method="post" action="server.php">
 
 		<?php include('errors.php'); ?>
 
