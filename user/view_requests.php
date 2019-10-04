@@ -9,10 +9,9 @@
 	require "requests_menu.php";
 ?>
 
-<div class="container" style="margin-top: 100px;">
+<div class="container" style="margin-top: 20px;">
 		<div class="row justify-content-center">
 			<div class="col-md-6 col-md-offset-3" align="center">
-				<!--<img src="images/logo.png"><br><br>-->
 
 				<?php if ($msg != "") echo $msg . "<br><br>"; ?>
 				
@@ -36,21 +35,21 @@
 							{
 								require_once("../dbhandler.php");
 								
-								$email = $_SESSION['username'];
-								$sql = "SELECT * FROM requests WHERE username = '$email';";
+								$username = $_SESSION['username'];
+								$sql = "SELECT * FROM device_request_submission WHERE username = '$username';";
 								$result = mysqli_query($conn, $sql);
 								$resultCheck = mysqli_num_rows($result);
 								
 								if($resultCheck > 0){
 									while ($row = mysqli_fetch_assoc($result)){
 										echo "<tr>";
-										echo "<td>" . $row["device_type"] . "</td>";
-										echo "<td>" . $row["household_number"] . "</td>"; 
-										echo "<td>" . $row["household_income"] . "</td>"; 
-										echo "<td>" . $row["request_description"] . "</td>";
-										echo "<td>" . $row["request_type"] . "</td>";
-										echo "<td>" . $row["request_date"] . "</td>";
-										echo "<td>" . $row["request_status"] . "</td>";
+										echo "<td>" . $row["f_name"] . "</td>";
+										echo "<td>" . $row["l_name"] . "</td>"; 
+										echo "<td>" . $row["email"] . "</td>"; 
+										echo "<td>" . $row["occupation"] . "</td>";
+										echo "<td>" . $row["phone"] . "</td>";
+										echo "<td>" . $row["annualIncome"] . "</td>";
+										echo "<td>" . $row["additionalDetails"] . "</td>";
 									}
 								}
 								else
@@ -73,5 +72,5 @@
 </div>
 	
 <?php
-	//require "../footer.php";
+	require "../footer.php";
 ?>

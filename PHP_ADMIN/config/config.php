@@ -16,9 +16,9 @@ require_once BASE_PATH . '/helpers/helpers.php';
 |--------------------------------------------------------------------------
  */
 
-define('DB_HOST', "localhost");
-define('DB_USER', "root");
-define('DB_PASSWORD', "");
+define('DB_HOST', "garciacomputercom.ipagemysql.com");
+define('DB_USER', "idonifyadmin");
+define('DB_PASSWORD', "Zxv12j45Mst");
 define('DB_NAME', "db_idonify");
 
 /**

@@ -14,6 +14,6 @@ $sql="UPDATE user SET
             WHERE id = '$id'";
 $edit=$con->query($sql);
 header("location:user.php");
-
+include "header.php";
 
  ?>

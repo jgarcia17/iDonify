@@ -1,65 +1,75 @@
-<?php
-	
+<?php 
+
 	require "user_header.php";
-	//require_once("../dbhandler.php");
-	$msg = "";
+	require "donations_menu.php";	
 	
-	
-	if(isset($_SESSION['email']))
-	{
-		require_once("../dbhandler.php");
-		
-		if(isset($_POST['submit'])){
-			
-			$email = $_SESSION['email'];
-			$deviceType = $conn->real_escape_string($_POST['type']);
-			$deviceSerial = $conn->real_escape_string($_POST['serial']);
-			$deviceQty = $conn->real_escape_string($_POST['qty']);
-			$donationDate = $conn->real_escape_string($_POST['date']);
-			$donationDescription = $conn->real_escape_string($_POST['description']);
-			$date = date("Y-m-d H:i:s", strtotime($donationDate)); //converting html input date to mysql datetime format
-			
-				
-			$conn->query("INSERT INTO device_donations (device_type, device_serial, device_qty, donation_date, donation_description, donor_email) 
-						VALUES ('$deviceType', '$deviceSerial', '$deviceQty', '$date','$donationDescription', '$email')");
-			$msg = "Your donation was added successfully!";
-		}
+ob_start();
+	session_start(); 
+
+	if (!isset($_SESSION['username'])) {
+		$_SESSION['msg'] = "You must log in first";
+		header('location: login.php');
 	}
-	else
-	{
-		//Redirect to login pages
-		header("Location: ../login.php");
+
+	if (isset($_GET['logout'])) {
+		session_destroy();
+		unset($_SESSION['username']);
+		header("location: login.php");
 	}
-	
+
 ?>
+<!DOCTYPE html>
+<html>
 
-<?php
-	require "donations_menu.php";
-?>
+<body>
 
-<div class="container" style="margin-top: 100px;">
-		<div class="row justify-content-center">
-			<div class="col-md-6 col-md-offset-3" align="center">
-				<!--<img src="images/logo.png"><br><br>-->
 
-				<?php if ($msg != "") echo $msg . "<br><br>"; ?>
-				
-				<h1>Device donations</h1><br>
-				<form method="post" action="donations.php">
-					<input class="form-control" type="text" name="type" placeholder="Device Type"><br>
-					<input class="form-control" type="text" name="serial" placeholder="Device Serial"><br>
-					<input class="form-control" type="text" name="qty" placeholder="Quantity"><br>
-					<input class="form-control" type="date" name="date"><br>
-					<textarea class="form-control" name="description" placeholder="Description"></textarea><br>
-					<button class="btn btn-primary" type="submit" name="submit">Create</submit><br>
-				</form>
+<?php 
+include "../db_config.php";
+if($_SERVER['REQUEST_METHOD']=='POST'){
 
-			</div>
-		</div>
+$dtype=$_POST['dtype'];
+
+$quantity=$_POST['quantity'];
+$date=$_POST['date'];
+$description=$_POST['description'];
+$email=$_POST['email'];
+$username = $_SESSION['username'];
+
+$sql="INSERT INTO donations VALUES(NULL,'$dtype','$quantity','$date','$description','$email', '$username')";
+$insert=$con->query($sql);
+if($insert){
+
+	echo "Data inserted successfully";
+}
+
+
+
+
+}
+
+ ?>
+ 
+ 
+
+	<br/><br/>
+	<h2 align="center">Device donations</h2>
+	<form class="text-center" action="" method="post">
+		<input type="text" name="dtype" class="form-group form-control" placeholder="Device Type">
+			
+				<input type="text" name="quantity" class="form-group form-control" placeholder="Quantity">	
+				<input type="date" name="date" class="form-group form-control" placeholder="mm/dd/yyyy">	
+				<textarea type="text" name="description" class="form-group form-control" rows="1" placeholder="Description"></textarea>
+				<input type="email" name="email" class="form-group form-control" placeholder="Email">	
+					<input type="submit" name="submit" class="btn btn-primary" value="Create" align="center">
+
+
+	</form>
 </div>
+		
+</body>
+</html>
 
-
-	
 <?php
-	//require "../footer.php";
+	require "../footer.php";
 ?>

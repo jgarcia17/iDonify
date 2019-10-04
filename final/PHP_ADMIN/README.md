@@ -1,2 +1,0 @@
-# iDonify
-Capstone project

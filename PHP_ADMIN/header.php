@@ -29,6 +29,26 @@
         <![endif]-->
         <script src="assets/js/jquery.min.js" type="text/javascript"></script>
 		
+		
+		
+		
+       <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="assets/js/metisMenu/metisMenu.min.js"></script>
+
+
+
+
+    <!-- Custom Theme JavaScript -->
+    <script src="assets/js/sb-admin-2.js"></script>
+    <script src="assets/js/jquery.validate.min.js"></script>		
+		
+		
+		
+		
+		
+		
 	</head>
 	<body>
 	
@@ -37,14 +57,16 @@
 					<nav class="navbar navbar-dark bg-dark">	
 						<ul>
 							<a class="navbar-brand" href="index.php">
-								<img src="assets/images/logo.png" alt="logo" height="80" style="margin-top:-25px;">
+								<img src="assets/images/logo.png" alt="logo" height="60" style="margin-top:-20px;">
 							</a>
-							<li><a href="index.php">Dashboard</a></li>
-							<li><a href="donor.php">Donor</a></li>
-							<li><a href="user.php">User</a></li>
-							
+							<!-- <li><a href="index.php">Dashboard</a></li> -->
+							<li><a href="donor.php">Donor  </a></li>
+							<li><a href="user.php">  User  </a></li>
+							<li><a href="volunteer_entry.php">  Volunteers  </a></li>
+							<li><a href="device_entry.php">  Device Requests  </a></li>							
+							<!--<li><a href="login.php">Login</a></li>		-->
 						</ul>
-						<li><a href="index.php?logout='1'">Logout</a></li>
+
 					</nav>
 				</div>
 			</div>

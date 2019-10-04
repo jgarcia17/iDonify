@@ -9,6 +9,8 @@ include "db_config.php";
 
 header("location:donor.php");
 
+include "header.php";
+
 
 
  ?>

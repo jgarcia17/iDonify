@@ -5,6 +5,6 @@ $sql="DELETE FROM comments WHERE id='$id'";
 $delete=$con->query($sql);
 header("location:user.php");
 
-
+include "header.php";
 
  ?>

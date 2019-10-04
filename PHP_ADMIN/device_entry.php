@@ -18,17 +18,19 @@ ob_start();
 
 ?>
 <?php 
-require_once 'config\config.php';
+require_once 'config/config.php';
 $db = getDbInstance();
 
 //Get Dashboard information
-$numusers = $db->getValue ("user", "count(*)");
-$numCustomers = $db->getValue ("donations", "count(*)");
+$numCustomers = $db->getValue ("user", "count(*)");
+$numusers = $db->getValue ("donations", "count(*)");
+$numRequests = $db->getValue ("device_request_submission", "count(*)");
+$numVolunteers = $db->getValue ("volunteer_form", "count(*)");
 
  ?>
 
 	
-            <!-- Navigation -->
+<!-- Left Side Navigation -->
 
         	
 <h2>Administration</h2>
@@ -39,17 +41,19 @@ $numCustomers = $db->getValue ("donations", "count(*)");
            <h4 class=""><a href="index.php" style="text-decoration: none;">  <i class="fa fa-dashboard fa-fw"></i>Dashboard</a></h4>
            <h4> <a href="donor.php" style="text-decoration: none;"> <i class="fa fa-list fa-fw"></i> Donor</a></h4>
            <h4> <a href="user.php" style="text-decoration: none;"><i class="fa fa-users fa-fw"></i>User</a></h4>
-           <h4> <a href="device_entry.php" style="text-decoration: none;"><i class="fa fa-users fa-fw"></i>Device Request Entries</a></h4>
-           <h4> <a href="volunteer_entry.php" style="text-decoration: none;"><i class="fa fa-users fa-fw"></i>Volunteer Request Entries</a></h4>
+           <h4> <a href="device_entry.php" style="text-decoration: none;"><i class="fa fa-users fa-fw"></i>Device Requests</a></h4>
+           <h4> <a href="volunteer_entry.php" style="text-decoration: none;"><i class="fa fa-users fa-fw"></i>Volunteer Requests</a></h4>
             </div>
         </div>
-       
 		
 
+
+
+	
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Device Request Entries List</h1>
+            <h1 class="page-header">Device Request Entries</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -97,6 +101,9 @@ $sql1 =  "SELECT * FROM device_request_submission";
                     <td><?php echo $row['phone']; ?></td>
                    <td><?php echo $row['annualIncome']; ?></td>
                    <td><?php echo $row['additionalDetails']; ?></td>
+                   <td><a href="edit_user.php?id=<?php echo $row['id']; ?>" class="btn btn-primary" style="margin-right: 8px;"><span class="glyphicon glyphicon-edit"></span>
+
+                    <a href="delete_user.php?id=<?php echo $row['id']; ?>"  class="btn btn-danger delete_btn" style="margin-right: 8px;"><span class="glyphicon glyphicon-trash"></span></td>
                    <?php } ?>
                 </tr>
                
@@ -107,19 +114,76 @@ $sql1 =  "SELECT * FROM device_request_submission";
 </div>
 <br/><br/><br/>
 
-        
+        <div class="col-sm-12">
+        <div class="card-header text-center"> <h1>Admin Conversation</h1></div>
 
-       <script src="assets/js/bootstrap.min.js"></script>
+            <?php 
+ if($_SERVER['REQUEST_METHOD']=='POST'){
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="assets/js/metisMenu/metisMenu.min.js"></script>
+            $usrname=$_SESSION['username_admin'];
+            $comment=$_POST['comments'];
+            $sql="INSERT INTO `comments` VALUES (NULL,'$usrname','$comment')";
+
+
+            $insert= $con->query($sql);
+
+
+}
+ $sql =  "SELECT * FROM `comments`";
+   $result = $con->query($sql);
+ while($row=$result->fetch_assoc()){
+    ?>
+ <div class="card" >
+
+ <?php
+
+
+  echo $row['comment']; ?> </div>
+  <div class="btn btn-primary" >
+  <?php echo $row['username'];?> </div>
+<button class="btn btn-light" style="float: right"><a href="delete.php?id=<?php echo $row['id']; ?>" style="text-decoration: none"> Delete</a></button>
+
+
+<?php }
+   ?>
+       
+   
+  
+
+        </div>
+
+    </div>
+
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-sm-12">
+<div class="form-group">
+     
+            <form action="" method="post">
+
+                <textarea type="text" name="comments" class="form-control form-group" rows="5" >
+                    
+
+                </textarea>
+<input type="submit" class="btn btn-success" name="submit" value="Comments">
+            </form>
+
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-8 -->
+        <div class="col-lg-4">
+
+            <!-- /.panel .chat-panel -->
+        </div>
+        <!-- /.col-lg-4 -->
+    </div>
+    <!-- /.row -->
+</div>
+    <!-- /.row -->
+</div>
 
 
 
-
-    <!-- Custom Theme JavaScript -->
-    <script src="assets/js/sb-admin-2.js"></script>
-    <script src="assets/js/jquery.validate.min.js"></script>
 
 </body>
 </html>

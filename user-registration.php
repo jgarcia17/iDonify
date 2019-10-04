@@ -25,7 +25,7 @@ if($count > 0){
 $sql = "INSERT INTO user(username,email,psw,password,user_type) VALUES('$username','$email','$password_1','$protect','0')";
 $query = $con->query($sql);
 if($query){
-    header("Location:login.php");
+    header("Location: login.php");
 }else{
     echo"Something went wrong";
 }

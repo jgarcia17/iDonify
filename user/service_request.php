@@ -11,7 +11,8 @@
 		
 		if(isset($_POST['submit'])){
 			
-			$email = $_SESSION['username'];
+			$username = $_SESSION['username'];
+			$email = $conn->real_escape_string($_POST['email']);
 			$deviceType = $conn->real_escape_string($_POST['type']);
 			$deviceSerial = $conn->real_escape_string($_POST['serial']);
 			$householdNumber = $conn->real_escape_string($_POST['number']);
@@ -29,9 +30,9 @@
 			
 				
 			$conn->query("INSERT INTO requests (device_type, household_number, household_income, document, document_name, request_description, 
-							request_type, device_serial, request_date, request_status, requester_email) 
+							request_type, device_serial, request_date, request_status, requester_email, requester_username) 
 						VALUES ('$deviceType', '$householdNumber','$householdIncome', '$document', '$documentName', '$requestDescription', 
-								'$requestType', '$deviceSerial', '$requestDate', '$requestStatus', '$email')");
+								'$requestType', '$deviceSerial', '$requestDate', '$requestStatus', '$email', '$username')");
 			$msg = "Your request was submitted successfully!";
 		}
 	}
@@ -47,7 +48,7 @@
 	require "requests_menu.php";
 ?>
 
-<div class="container" style="margin-top: 100px;">
+<div class="container" style="margin-top: 20px;">
 		<div class="row justify-content-center">
 			<div class="col-md-6 col-md-offset-3" align="center">
 				<!--<img src="images/logo.png"><br><br>-->
@@ -56,6 +57,7 @@
 				
 				<h1>Service request</h1><br>
 				<form method="post" action="service_request.php" enctype="multipart/form-data">
+					<input class="form-control" type="text" name="type" placeholder="Email"><br>
 					<input class="form-control" type="text" name="type" placeholder="Device Type"><br>
 					<input class="form-control" type="text" name="serial" placeholder="Device Serial"><br>
 					<input class="form-control" type="number" name="number" placeholder="Household Size" min="1" max="20"><br>
@@ -73,5 +75,5 @@
 
 	
 <?php
-	//require "../footer.php";
+	require "../footer.php";
 ?>

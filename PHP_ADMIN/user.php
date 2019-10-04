@@ -24,20 +24,25 @@ $db = getDbInstance();
 //Get Dashboard information
 $numCustomers = $db->getValue ("user", "count(*)");
 $numusers = $db->getValue ("donations", "count(*)");
+$numRequests = $db->getValue ("device_request_submission", "count(*)");
+$numVolunteers = $db->getValue ("volunteer_form", "count(*)");
 
  ?>
 
 	
-            <!-- Navigation -->
+<!-- Left Side Navigation -->
 
         	
 <h2>Administration</h2>
 
-      <div class="col-sm-4">
-        <div class="head1">
+ 
+        <div class="col-sm-4">
+        <div class="head1" style="margin-left: -30px;">
            <h4 class=""><a href="index.php" style="text-decoration: none;">  <i class="fa fa-dashboard fa-fw"></i>Dashboard</a></h4>
            <h4> <a href="donor.php" style="text-decoration: none;"> <i class="fa fa-list fa-fw"></i> Donor</a></h4>
            <h4> <a href="user.php" style="text-decoration: none;"><i class="fa fa-users fa-fw"></i>User</a></h4>
+           <h4> <a href="device_entry.php" style="text-decoration: none;"><i class="fa fa-users fa-fw"></i>Device Requests</a></h4>
+           <h4> <a href="volunteer_entry.php" style="text-decoration: none;"><i class="fa fa-users fa-fw"></i>Volunteer Requests</a></h4>
             </div>
         </div>
 		
@@ -68,10 +73,10 @@ $numusers = $db->getValue ("donations", "count(*)");
           <table class="table text-center">
             <thead>
                 <tr>
-                        <th class="text-center">User Name</th>
+                    <th class="text-center">User Name</th>
                     <th class="text-center">Email</th>
-                <th class="text-center">Password</th>
-                   <th class="text-center">Action</th>
+                    <th class="text-center">Password</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -91,8 +96,8 @@ $sql1 =  "SELECT * FROM user";
 
                     <td><?php echo $row['username']; ?></td>
                     <td><?php echo $row['email']; ?></td>
-                   <td><?php echo $row['psw']; ?></td>
-                   <td><a href="edit_user.php?id=<?php echo $row['id']; ?>" class="btn btn-primary" style="margin-right: 8px;"><span class="glyphicon glyphicon-edit"></span>
+                    <td><?php echo $row['password']; ?></td>
+                    <td><a href="edit_user.php?id=<?php echo $row['id']; ?>" class="btn btn-primary" style="margin-right: 8px;"><span class="glyphicon glyphicon-edit"></span>
 
                     <a href="delete_user.php?id=<?php echo $row['id']; ?>"  class="btn btn-danger delete_btn" style="margin-right: 8px;"><span class="glyphicon glyphicon-trash"></span></td>
                    <?php } ?>
@@ -174,17 +179,7 @@ $sql1 =  "SELECT * FROM user";
 </div>
 
 
-       <script src="assets/js/bootstrap.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="assets/js/metisMenu/metisMenu.min.js"></script>
-
-
-
-
-    <!-- Custom Theme JavaScript -->
-    <script src="assets/js/sb-admin-2.js"></script>
-    <script src="assets/js/jquery.validate.min.js"></script>
 
 </body>
 </html>

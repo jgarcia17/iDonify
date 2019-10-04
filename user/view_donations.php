@@ -9,7 +9,7 @@
 	require "donations_menu.php";
 ?>
 
-<div class="container" style="margin-top: 100px;">
+<div class="container" style="margin-top: 20px;">
 		<div class="row justify-content-center">
 			<div class="col-md-6 col-md-offset-3" align="center">
 				<!--<img src="images/logo.png"><br><br>-->
@@ -66,5 +66,5 @@
 </div>
 	
 <?php
-	//require "../footer.php";
+	require "../footer.php";
 ?>

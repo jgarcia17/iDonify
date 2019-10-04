@@ -8,7 +8,7 @@
 	$_SESSION['success'] = "";
 
 	// connect to database
-	$db = mysqli_connect('localhost', 'root', '', 'db_idonify');
+	$db = mysqli_connect('garciacomputercom.ipagemysql.com', 'idonifyadmin', 'Zxv12j45Mst', 'db_idonify');
 
 	// REGISTER USER
 	if (isset($_POST['reg_user'])) {

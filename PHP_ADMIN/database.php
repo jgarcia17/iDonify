@@ -10,9 +10,9 @@
 
 <?php
     function getDatabaseConnection($dbname = 'db_idonify'){
-        $host = "localhost";
-        $username = "root";
-        $password = "";
+        $host = "garciacomputercom.ipagemysql.com";
+        $username = "idonifyadmin";
+        $password = "Zxv12j45Mst";
 		
 		//b8699c37b7c87b:0014e75f@us-cdbr-iron-east-02.cleardb.net/heroku_1b1cce36d90c711
     

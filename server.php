@@ -8,7 +8,7 @@
 	$_SESSION['success'] = "";
 
 	// connect to database
-	$db = mysqli_connect('localhost', 'root', '', 'db_idonify');
+	$db = mysqli_connect('garciacomputercom.ipagemysql.com', 'idonifyadmin', 'Zxv12j45Mst', 'db_idonify');
 
 	
 
@@ -43,6 +43,7 @@
 			mysqli_query($db, $query);
 
 			$_SESSION['username'] = $username;
+			$_SESSION['email'] = $email;
 			$_SESSION['success'] = "You are now logged in";
 			header('location: login.php');
 		}
@@ -97,9 +98,9 @@
 	//Device Request Form
 
 		// REGISTER USER
-	if (isset($_POST['device_request'])) {
+	if (isset($_POST['device_form'])) {
 		// receive all input values from the form
-		$d_fname = mysqli_real_escape_string($db, $_POST['d_fname']);
+		$d_fname = mysqli_real_escape_string($db, $_POST['f_name']);
 		$d_lname = mysqli_real_escape_string($db, $_POST['d_lname']);
 		$d_email = mysqli_real_escape_string($db, $_POST['d_email']);
 		$d_occupation = mysqli_real_escape_string($db, $_POST['d_occupation']);
@@ -127,11 +128,11 @@
 			mysqli_query($db, $query);
    
 			$to_email = $d_email;
-			$subject = 'Website Support';
+			$subject = 'iDonify Thanks for Your Request';
 			$message = 'Thanks for submitting the form.We will get back to you as soon as we can.';
 			$headers = 'From: noreply@company.com';
 			if(mail($to_email,$subject,$message,$headers)){
-			header('location: thankyou.php'); } else {echo "Failed Sending email.";}
+			header('location: user/thankyou.php'); } else {echo "Failed Sending email.";}
 		}
 
 	}
@@ -171,10 +172,10 @@
 			mysqli_query($db, $query);
 			$to_email = $v_email;
 			$subject = 'Website Support';
-			$message = 'Thanks for submitting the form.We will get back to you as soon as we can.';
+			$message = 'Thanks for submitting the form. We will get back to you as soon as we can.';
 			$headers = 'From: noreply@company.com';
 			if(mail($to_email,$subject,$message,$headers)){
-			header('location: thankyou.php'); } else {echo "Failed Sending email.";}
+			header('location: user/thankyou.php'); } else {echo "Failed Sending email.";}
 		}
 
 	}
